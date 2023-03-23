@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NewHotelType } from '../types/hotel'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Edit from './Edit';
+import { deleteHotel } from '../lib/controller';
 
 interface IProps {
   hotel: NewHotelType;
@@ -8,6 +10,10 @@ interface IProps {
 }
 
 const Information = ({ hotel, detailsPage }: IProps) => {
+
+  const [editDescription, setEditDescription] = useState(false)
+  const navigate = useNavigate()
+
   return (
     <div className="hotel-preview">
       <div className="image-container">
@@ -32,11 +38,30 @@ const Information = ({ hotel, detailsPage }: IProps) => {
         </span>
         <hr />
         <span className="feature">Main Feature: {hotel?.feature}</span>
-        <Link to={`/hotels/${hotel.id}`}>
-          <button className="moreinfo-btn">View More Information</button>
-        </Link>
+
+        {detailsPage ? (
+          <>
+            <p className='description-text'>{hotel.description} <strong className="edit-text" onClick={() => setEditDescription(!editDescription)}>Edit Description</strong>
+              {editDescription ? 
+              <Edit 
+                editDescription={editDescription} 
+                setEditDescription={setEditDescription} 
+                id={hotel.id}
+              /> : null}
+
+            </p>
+            <button onClick={() => deleteHotel(hotel.id, navigate)} >Delete Hotel</button>
+          </>
+        ) : (
+          <Link to={`/hotels/${hotel.id}`}>
+            <button className="moreinfo-btn">View More Information</button>
+          </Link>
+        )}
+
+
+
       </div>
-    </div>
+    </div >
   )
 }
 
