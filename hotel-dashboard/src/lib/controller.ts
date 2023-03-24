@@ -21,10 +21,10 @@ export const deleteHotel = async (id: string | undefined, navigate: NavigateFunc
 }
 
 // EDIT A DOCUMENT / DESCRIPTION
-export const updateHotel = async(id: string | undefined, docData: any) => {
+export const updateHotel = async (id: string | undefined, docData: any) => {
     const getHotel = doc(firestore, `hotels/${id}`)
-    await setDoc(getHotel, docData, {merge: true})
-    console.log("The value has been written to the database");
-    
+    await setDoc(getHotel, docData, { merge: true })
+
+
 }
 
