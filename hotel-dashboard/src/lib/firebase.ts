@@ -7,7 +7,7 @@ const firebaseConfig = {
   storageBucket: "hotel-dashboard-9f1cb.appspot.com",
   messagingSenderId: "1008526421746",
   appId: "1:1008526421746:web:2b05cd02bf437f562d6a6b",
-  measurementId: "G-LBMW9N3GTL"
+  measurementId: "G-LBMW9N3GTL",
 };
 
 // Initialize Firebase

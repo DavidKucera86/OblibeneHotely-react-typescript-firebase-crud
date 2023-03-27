@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { hotelsCollection } from "../lib/controller";
 import { NewHotelType } from "../types/hotel";
 import Information from "./Information";
+import { StyledCard } from "./styles/Card.styled";
 
 function Card() {
   const [hotels, setHotels] = useState<NewHotelType[]>([]);
@@ -40,20 +41,18 @@ function Card() {
   });
 
   return (
-    <div className="card">
-      <h2 className="sort-title">Sort the hotels</h2>
-      <select
-        className="select"
-        defaultValue={""}
-        onChange={(e) => setSort(e.target.value)}
-      >
-        <option value="">Sort By</option>
-        <option value="title">Title</option>
-        <option value="perNight">Price per night</option>
-        <option value="stars">Stars</option>
-        <option value="review">Review</option>
-      </select>
-      <h2 className="title">All Hotels</h2>
+    <StyledCard>
+      <h2 className="sort-title">Seřadit hotely</h2>
+      <form>
+        <select defaultValue={""} onChange={(e) => setSort(e.target.value)}>
+          <option value="">Řadit podle...</option>
+          <option value="title">Jméno</option>
+          <option value="perNight">Cena az noc</option>
+          <option value="stars">Počet hvězd</option>
+          <option value="review">Počet hodnocení</option>
+        </select>
+      </form>
+      <h2 className="title">Přehled hotelů</h2>
       {hotels && hotels.length ? (
         <div className="individual-card">
           {sortedHotels?.map((hotel) => (
@@ -63,7 +62,7 @@ function Card() {
       ) : (
         <h2 className="no-hotels">There are no hotels. Please add one</h2>
       )}
-    </div>
+    </StyledCard>
   );
 }
 

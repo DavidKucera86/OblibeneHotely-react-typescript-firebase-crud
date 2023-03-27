@@ -1,32 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { StyledNavbar } from "./styles/Navbar.styled";
+import { FaHotel, FaPlusCircle } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <h1>Dashboard</h1>
+    <StyledNavbar>
+      <h1>Oblíbené hotely</h1>
       <div className="links">
-        <Link
-          to="/"
-          style={{
-            color: "rgb(77, 77, 77)",
-          }}
-        >
-          All Hotels
+        <Link to="/">
+          <FaHotel /> <div>Přehled hotelů</div>
         </Link>
-        <Link
-          to="/create"
-          style={{
-            color: "white",
-            backgroundColor: "rgb(77, 77, 77)",
-            borderRadius: "8px",
-          }}
-        >
-          New Hotels
+        <Link to="/create">
+          <FaPlusCircle />
+          <div> Přidat nový hotel</div>
         </Link>
       </div>
-    </nav>
-  )
-}
+    </StyledNavbar>
+  );
+};
 
-export default Navbar
+export default Navbar;
